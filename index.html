@@ -8,9 +8,14 @@
 <body> 
     <details> 
         <summary>Spoiler</summary> 
-        <pre>
-          here it is
-        </pre>
+        <code>
+            fun readFile(path: Path): Flux<String> {
+                return Flux.using(
+                    { Files.lines(path) },
+                    { s: Stream<String>? -> Flux.fromStream(s!!) }
+                ) { obj: Stream<String> -> obj.close() }
+            }
+        </code>
     </details>         
 </body> 
 </html> 
